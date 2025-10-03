@@ -1,5 +1,4 @@
-// Servicio de mock en memoria con la misma interfaz que apiclient
-// Métodos: getAll, getByAuthor, getByAuthorAndName, create
+import { userUtils } from '../data/mockUsers.js'
 
 const seed = [
   {
@@ -91,4 +90,33 @@ export default {
     if (db.length === before) throw new Error('Blueprint no encontrado')
     return { ok: true }
   },
+
+  // Métodos de autenticación mock con seguridad
+  async login(credentials) {
+    await delay(100)
+    const { username, password } = credentials
+
+    // Validación segura con hash (password ya viene hasheada desde el frontend)
+    const user = await userUtils.validateCredentials(username, password)
+
+    if (!user) {
+      throw new Error('Credenciales inválidas')
+    }
+
+    // Generar token JWT mock (en producción esto se haría en el backend)
+    const payload = {
+      sub: user.username,
+      username: user.username,
+      email: user.email,
+      name: user.name,
+      isAdmin: user.isAdmin || false,
+      iat: Math.floor(Date.now() / 1000),
+      exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 horas
+    }
+
+    // Token JWT mock (en producción sería firmado correctamente)
+    const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${btoa(JSON.stringify(payload))}.mock-signature`
+
+    return { token }
+  }
 }

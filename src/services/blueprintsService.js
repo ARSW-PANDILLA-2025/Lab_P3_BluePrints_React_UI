@@ -1,4 +1,3 @@
-// Selector de servicio: según VITE_USE_MOCK exporta apimock o apiclient
 import apimock from './apimock.js'
 import serviceClient from './serviceClient.js'
 

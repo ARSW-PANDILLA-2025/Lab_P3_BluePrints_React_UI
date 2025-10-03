@@ -1,15 +1,22 @@
 import { useState } from 'react'
+import { useAuth } from '../contexts/AuthContext.jsx'
 
 export default function BlueprintForm({ onSubmit }) {
-  const [author, setAuthor] = useState('')
+  const { user } = useAuth()
   const [name, setName] = useState('')
   const [pointsJSON, setPointsJSON] = useState('[{"x":10,"y":10},{"x":40,"y":60}]')
 
+  // Hicimos que el autor fuera quien se loggea
+
   const handle = (e) => {
     e.preventDefault()
+    if (!user?.username) {
+      alert('Error: Usuario no autenticado')
+      return
+    }
     try {
       const points = JSON.parse(pointsJSON)
-      onSubmit({ author, name, points })
+      onSubmit({ author: user.username, name, points })
     } catch (e) {
       alert('JSON de puntos inválido')
     }
@@ -24,10 +31,17 @@ export default function BlueprintForm({ onSubmit }) {
           <input
             id="author"
             className="input"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            placeholder="juan.perez"
+            value={user?.username || 'No autenticado'}
+            disabled
+            style={{
+              backgroundColor: '#f3f4f6',
+              cursor: 'not-allowed',
+              color: '#6b7280',
+            }}
           />
+          <small style={{ color: '#6b7280', fontSize: '0.75rem' }}>
+            Autor automático basado en el usuario loggeado
+          </small>
         </div>
         <div>
           <label htmlFor="name">Nombre</label>
@@ -37,6 +51,7 @@ export default function BlueprintForm({ onSubmit }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="mi-dibujo"
+            required
           />
         </div>
       </div>
