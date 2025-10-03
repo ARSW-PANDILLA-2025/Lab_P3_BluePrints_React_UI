@@ -200,8 +200,14 @@ Código fuente completo con arquitectura sólida implementada siguiendo mejores 
 ### Funcionalidades Demostradas
 Canvas de visualización funcionando correctamente con renderizado en tiempo real, sistema robusto de autenticación implementado con JWT y validaciones, administración completa de usuarios con interfaz intuitiva y funcional, intercambio fluido entre servicios mock y reales sin interrupciones, Redux Toolkit operativo para manejo centralizado del estado global, y rutas protegidas por roles con verificación granular de permisos.
 
+<img width="975" height="601" alt="image" src="https://github.com/user-attachments/assets/7ee8f6c5-f807-491b-be56-089b49e16c18" />
+
+
 ### Evidencias de Implementación
 Visualización completamente funcional de planos en canvas con puntos precisos y líneas conectoras, login operativo con validación rigurosa de credenciales SHA256 y feedback de usuario, panel administrativo completamente accesible exclusivamente para administradores con todas las funcionalidades activas, configuración dual de servicios perfectamente operativa mediante variables de entorno, y estado global completamente sincronizado y accesible en toda la aplicación sin inconsistencias.
+
+<img width="975" height="601" alt="image" src="https://github.com/user-attachments/assets/03e6aabd-8a01-45b1-b2ad-5b24cbd86c3e" />
+
 
 ## Buenas Prácticas Aplicadas
 
