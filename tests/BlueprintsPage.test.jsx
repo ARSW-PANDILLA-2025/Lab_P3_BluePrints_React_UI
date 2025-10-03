@@ -4,6 +4,22 @@ import { Provider } from 'react-redux'
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 import BlueprintsPage from '../src/pages/BlueprintsPage.jsx'
 
+// Mock del useAuth hook
+vi.mock('../src/contexts/AuthContext.jsx', () => ({
+  useAuth: () => ({
+    user: {
+      username: 'testuser',
+      email: 'test@example.com',
+      name: 'Test User',
+      isAdmin: false
+    },
+    isAuthenticated: true,
+    loading: false,
+    login: vi.fn(),
+    logout: vi.fn()
+  })
+}))
+
 // Mock de thunks del slice para no requerir backend
 vi.mock('../src/features/blueprints/blueprintsSlice.js', () => ({
   fetchAuthors: () => ({ type: 'blueprints/fetchAuthors' }),

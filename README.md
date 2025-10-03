@@ -27,7 +27,7 @@ Node.js 18 o superior, npm 8 o superior, y backend de Blueprints ejecutándose c
 
 ### Clonar e instalar dependencias
 ```bash
-git clone <repositorio>
+git clone https://github.com/ARSW-PANDILLA-2025/Lab_P3_BluePrints_React_UI.git
 cd Lab_P3_BluePrints_React_UI
 npm install
 ```
